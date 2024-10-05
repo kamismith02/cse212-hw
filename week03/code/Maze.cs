@@ -32,7 +32,25 @@ public class Maze
     /// </summary>
     public void MoveLeft()
     {
-        // FILL IN CODE
+        var newX = _currX - 1; // Moving left decreases x
+        var newY = _currY;
+
+        // Check if the new position is in the maze map
+        if (_mazeMap.TryGetValue((_currX, _currY), out var movements))
+        {
+            if (movements[0]) // Check if moving left is valid
+            {
+                _currX = newX; // Move left
+            }
+            else
+            {
+                throw new InvalidOperationException("Can't go that way!");
+            }
+        }
+        else
+        {
+            throw new InvalidOperationException("Can't go that way!");
+        }
     }
 
     /// <summary>
@@ -41,7 +59,24 @@ public class Maze
     /// </summary>
     public void MoveRight()
     {
-        // FILL IN CODE
+        var newX = _currX + 1; // Moving right increases x
+        var newY = _currY;
+
+        if (_mazeMap.TryGetValue((_currX, _currY), out var movements))
+        {
+            if (movements[1]) // Check if moving right is valid
+            {
+                _currX = newX; // Move right
+            }
+            else
+            {
+                throw new InvalidOperationException("Can't go that way!");
+            }
+        }
+        else
+        {
+            throw new InvalidOperationException("Can't go that way!");
+        }
     }
 
     /// <summary>
@@ -50,8 +85,26 @@ public class Maze
     /// </summary>
     public void MoveUp()
     {
-        // FILL IN CODE
+        var newX = _currX;
+        var newY = _currY - 1; // Moving up decreases y
+
+        if (_mazeMap.TryGetValue((_currX, _currY), out var movements))
+        {
+            if (movements[2]) // Check if moving up is valid
+            {
+                _currY = newY; // Move up
+            }
+            else
+            {
+                throw new InvalidOperationException("Can't go that way!");
+            }
+        }
+        else
+        {
+            throw new InvalidOperationException("Can't go that way!");
+        }
     }
+
 
     /// <summary>
     /// Check to see if you can move down.  If you can, then move.  If you
@@ -59,7 +112,24 @@ public class Maze
     /// </summary>
     public void MoveDown()
     {
-        // FILL IN CODE
+        var newX = _currX;
+        var newY = _currY + 1; // Moving down increases y
+
+        if (_mazeMap.TryGetValue((_currX, _currY), out var movements))
+        {
+            if (movements[3]) // Check if moving down is valid
+            {
+                _currY = newY; // Move down
+            }
+            else
+            {
+                throw new InvalidOperationException("Can't go that way!");
+            }
+        }
+        else
+        {
+            throw new InvalidOperationException("Can't go that way!");
+        }
     }
 
     public string GetStatus()

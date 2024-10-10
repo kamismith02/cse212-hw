@@ -92,8 +92,8 @@ public class LinkedList : IEnumerable<int>
         // will be affected.
         else if (_tail is not null)
         {
-            _tail.Prev!.Next = null; // Disconnect the second node from the first node
-            _tail = _tail.Prev; // Update the tail to point to the second node
+            _tail.Prev!.Next = null; // Disconnect the nodes
+            _tail = _tail.Prev; // Update the tail to point to the second to last node
         }
     }
 

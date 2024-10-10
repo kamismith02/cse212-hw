@@ -44,7 +44,7 @@ public class LinkedList : IEnumerable<int>
         // If the list is not empty, then only tail will be affected.
         else
         {
-            newNode.Next = _tail; // Connect new node to the previous tail
+            newNode.Prev = _tail; // Connect new node to the previous tail
             _tail.Next = newNode; // Connect the previous tail to the new node
             _tail = newNode; // Update the tail to point to the new node
         }
@@ -80,20 +80,23 @@ public class LinkedList : IEnumerable<int>
     public void RemoveTail()
     {
         // TODO Problem 2
-        // If the list has only one item in it, then set head and tail 
-        // to null resulting in an empty list.  This condition will also
-        // cover an empty list.  Its okay to set to null again.
+        // If the list is empty, do nothing.
+        if (_tail is null)
+        {
+            return;
+        }
+
+        // If the list has only one node (head and tail point to the same node).
         if (_head == _tail)
         {
             _head = null;
             _tail = null;
         }
-        // If the list has more than one item in it, then only the tail
-        // will be affected.
-        else if (_tail is not null)
+        // If the list has more than one node.
+        else
         {
-            _tail.Prev!.Next = null; // Disconnect the nodes
-            _tail = _tail.Prev; // Update the tail to point to the second to last node
+            _tail = _tail.Prev; // Update the tail to the previous node.
+            _tail!.Next = null; // Set the new tail's Next to null, disconnecting the old tail.
         }
     }
 
